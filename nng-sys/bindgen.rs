@@ -668,7 +668,17 @@ fn bindgen_test_layout_nng_sockaddr_zt() {
 pub type nng_sockaddr_udp = nng_sockaddr_in;
 pub type nng_sockaddr_tcp = nng_sockaddr_in;
 #[repr(C)]
-#[derive(Copy, Clone)]; 17usize ] , }#[test]
+#[derive(Copy, Clone)]
+pub union nng_sockaddr {
+    pub s_family: u16,
+    pub s_ipc: nng_sockaddr_ipc,
+    pub s_inproc: nng_sockaddr_inproc,
+    pub s_in6: nng_sockaddr_in6,
+    pub s_in: nng_sockaddr_in,
+    pub s_zt: nng_sockaddr_zt,
+    _bindgen_union_align: [u64; 17usize],
+}
+#[test]
 fn bindgen_test_layout_nng_sockaddr() {
     assert_eq!(
         ::std::mem::size_of::<nng_sockaddr>(),
@@ -911,12 +921,13 @@ pub const nng_pipe_ev_NNG_PIPE_EV_ADD_POST: nng_pipe_ev = 1;
 pub const nng_pipe_ev_NNG_PIPE_EV_REM_POST: nng_pipe_ev = 2;
 pub const nng_pipe_ev_NNG_PIPE_EV_NUM: nng_pipe_ev = 3;
 pub type nng_pipe_ev = u32;
-pub type nng_pipe_cb =
-    ::std::option::Option<
-        unsafe extern "C" fn(arg1: nng_pipe,
-                             arg2: ::std::os::raw::c_int,
-                             arg3: *mut ::std::os::raw::c_void),
-    >;
+pub type nng_pipe_cb = ::std::option::Option<
+    unsafe extern "C" fn(
+        arg1: nng_pipe,
+        arg2: ::std::os::raw::c_int,
+        arg3: *mut ::std::os::raw::c_void,
+    ),
+>;
 extern "C" {
     pub fn nng_pipe_notify(
         arg1: nng_socket,
