@@ -1,20 +1,27 @@
+extern crate bindgen;
 extern crate cmake;
 
 fn main() {
     let mut cfg = cmake::Config::new("nng");
     let dst = cfg.define("BUILD_SHARED_LIBS", "OFF")
-                 .define("CMAKE_INSTALL_LIBDIR", "lib")
-                 .define("NNG_TESTS", "OFF")
-                 .define("NNG_TOOLS", "OFF")
-                 .define("NNG_ENABLE_TLS", "OFF")
-                 .define("NNG_TRANSPORT_ZEROTIER", "OFF")
-                 .define("NNG_ENABLE_HTTP", "OFF")
-                 .define("NNG_TRANSPORT_WS", "OFF")
-                 .define("CMAKE_BUILD_TYPE", "Release")
-                 .build();
+        .define("CMAKE_INSTALL_LIBDIR", "lib")
+        .define("NNG_TESTS", "OFF")
+        .define("NNG_TOOLS", "OFF")
+        .define("NNG_ENABLE_TLS", "OFF")
+        .define("NNG_TRANSPORT_ZEROTIER", "OFF")
+        .define("NNG_ENABLE_HTTP", "OFF")
+        .define("NNG_TRANSPORT_WS", "OFF")
+        .define("CMAKE_BUILD_TYPE", "Release")
+        .build();
 
     println!("cargo:rustc-link-lib=static=nng");
-    //cargo build -vv 才能显示，下同
     println!("cargo:rustc-link-search=native={}/lib", dst.display());
     println!("cargo:include={}/include", dst.display());
+
+    bindgen::Builder::default()
+        .header("bindgen.h")
+        .generate()
+        .unwrap()
+        .write_to_file("bindgen.rs")
+        .unwrap();
 }
