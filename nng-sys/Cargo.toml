@@ -1,0 +1,22 @@
+[package]
+name = "nng-sys"
+version = "0.0.1"
+authors = ["FanHui <hui.fan@mail.ru>"]
+
+links = "nng"
+build = "build.rs"
+
+license = "MIT"
+repository = "https://github.com/kt10/nng-rs"
+description = "Native bindings to the nng(nanomsg2) library"
+
+[lib]
+name = "nng_sys"
+path = "lib.rs"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+pkg-config = "0.3"
+cmake = "0.1"
