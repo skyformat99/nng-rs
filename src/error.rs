@@ -26,10 +26,14 @@ impl Error {
     }
 
     /// Get the message corresponding to this error
-    pub fn message(&self) -> &str { self.msg }
+    pub fn message(&self) -> &str {
+        self.msg
+    }
 
     /// Return the code for this error
-    pub fn code(&self) -> i32 { self.code }
+    pub fn code(&self) -> i32 {
+        self.code
+    }
 }
 
 fn get_msg(code: i32) -> &'static str {
@@ -38,7 +42,8 @@ fn get_msg(code: i32) -> &'static str {
         if ptr.is_null() {
             ""
         } else {
-            str::from_utf8(CStr::from_ptr(ptr).to_bytes()).unwrap()
+            str::from_utf8(CStr::from_ptr(ptr).to_bytes())
+                .unwrap_or("!! invalid errmsg(utf8 conversion failed)")
         }
     }
 }
@@ -50,13 +55,16 @@ impl fmt::Display for Error {
 }
 
 impl error::Error for Error {
-    fn description(&self) -> &str { self.message() }
+    fn description(&self) -> &str {
+        self.message()
+    }
 }
 
 impl From<NulError> for Error {
     fn from(_: NulError) -> Error {
-        Error::new(raw::nng_errno_enum_NNG_EINVAL as i32,
-                   "provided data contained a nul byte and could not be used \
-                    as as string")
+        Error::new(
+            raw::nng_errno_enum_NNG_EINVAL as i32,
+            "provided data contained a nul byte and could not be used as as string",
+        )
     }
 }
