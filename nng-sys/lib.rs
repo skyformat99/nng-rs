@@ -2,7 +2,7 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-include!("../c_headers/all_in_one.rs");
+include!("c_headers/all_in_one.rs");
 
 #[cfg(test)]
 mod tests {

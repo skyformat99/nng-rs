@@ -4,7 +4,7 @@ version = "0.0.1"
 authors = ["FanHui <hui.fan@mail.ru>"]
 
 links = "nng"
-build = "src/build.rs"
+build = "build.rs"
 
 license = "MIT"
 repository = "https://github.com/kt10/nng-rs"
@@ -12,7 +12,7 @@ description = "Native bindings to the nng(nanomsg2) library"
 
 [lib]
 name = "nng_sys"
-path = "src/lib.rs"
+path = "lib.rs"
 
 [dependencies]
 libc = "0.2"
