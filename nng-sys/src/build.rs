@@ -1,4 +1,3 @@
-extern crate bindgen;
 extern crate cmake;
 
 fn main() {
@@ -18,11 +17,4 @@ fn main() {
     println!("cargo:rustc-link-lib=static=nng");
     println!("cargo:rustc-link-search=native={}/lib", dst.display());
     println!("cargo:include={}/include", dst.display());
-
-    bindgen::Builder::default()
-        .header("bindgen.h")
-        .generate()
-        .unwrap()
-        .write_to_file("bindgen.rs")
-        .unwrap();
 }
