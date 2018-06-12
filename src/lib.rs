@@ -1,3 +1,7 @@
+extern crate nng_sys as raw;
+
+mod error;
+
 #[cfg(test)]
 mod tests {
     #[test]
