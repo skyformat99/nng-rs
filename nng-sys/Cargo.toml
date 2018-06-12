@@ -15,7 +15,7 @@ name = "nng_sys"
 path = "lib.rs"
 
 [dependencies]
-libc = "0.2"
+#libc = "0.2"
 
 [build-dependencies]
 cmake = "0.1"
