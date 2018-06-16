@@ -1,6 +1,6 @@
 [package]
 name = "nng"
-version = "0.0.1"
+version = "0.0.0"
 
 authors = ["FanHui <hui.fan@mail.ru>"]
 license = "MIT"
@@ -14,6 +14,6 @@ description = "Bindings to nng(nanomsg2)."
 
 [dependencies]
 libc = "0.2"
-nng-sys = { path = "nng-sys", version = "0.0.1" }
+nng-sys = { path = "nng-sys", version = "0.0.0" }
 
 [dev-dependencies]

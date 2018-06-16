@@ -1,6 +1,6 @@
 [package]
 name = "nng-sys"
-version = "0.0.1"
+version = "0.0.0"
 authors = ["FanHui <hui.fan@mail.ru>"]
 
 links = "nng"
