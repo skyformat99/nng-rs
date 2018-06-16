@@ -1,7 +1,7 @@
 extern crate cmake;
 
 fn main() {
-    let mut cfg = cmake::Config::new("nng");
+    let mut cfg = cmake::Config::new("build/nng");
     let dst = cfg.define("BUILD_SHARED_LIBS", "OFF")
         .define("CMAKE_INSTALL_LIBDIR", "lib")
         .define("NNG_TESTS", "OFF")
