@@ -1,2 +1,2 @@
 # workspace
-## See nng-rs/ for detail...
+## SEE: nng-rs/README.md
